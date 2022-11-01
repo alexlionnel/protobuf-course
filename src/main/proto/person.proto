@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import "common/address.proto";
+import "common/car.proto";
+
+option java_multiple_files = true; // généré le code java sur plusieurs fichiers (classe, builder, ...) plutôt que dans 1 seul gros fichier
+option java_package = "org.example.protobuf_course.models"; // on spécifie le package java
+
+// le nombre à droite représente le tag associé à une propriété
+// 1 - 15 : 1 byte (pour les propriétés le plus souvent utilisées)
+// 16 - 2047 : 2 bytes (pour les propriétés peu utilisées)
+// Après sérialisation en proto, on a 1=sam 2=10
+// Après sérialisation en json, on a {'name': 'sam', 'age': 10}
+message Person {
+  string name = 1;
+  int32 age = 2;
+  common.Address address = 3;
+  repeated common.Car car = 4;
+}
